@@ -40,7 +40,7 @@ iterate = -> (x, &block) do
   end.lazy
 end
 
-set = iterate.call([0,0]) { |p| draw p }.first 599999
+iterate.call([0,0]) { |p| draw p }.first 599999
 
 SDL.Flip SCREEN
 SDL.SaveBMP(SCREEN, "out.bmp")
