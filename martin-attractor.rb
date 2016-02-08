@@ -25,10 +25,10 @@ def draw(p)
   r   = SDL::Rect.new( :x=>0, :y=>0, :w=>1, :h=>1 )
   rgb = (Time.now.to_f.modulo(1) * 0xFFFF).round
   SDL.FillRect(S, r, rgb)
-  r.x, r.y = center(p)
+  r.x, r.y = center p
   SDL.BlitSurface(S, nil, SCREEN, r)
-  SDL.Flip(SCREEN) if r.x % 5 == 0
-  f(p)
+  SDL.Flip SCREEN if r.x % 5 == 0
+  f p
 end
 
 iterate = -> (x, &block) do
@@ -42,5 +42,5 @@ end
 
 set = iterate.call([0,0]) { |p| draw(p) }.first 599999
 
-SDL.Flip(SCREEN)
+SDL.Flip SCREEN
 SDL.SaveBMP(SCREEN, "out.bmp")
