@@ -35,12 +35,12 @@ iterate = -> (x, &block) do
   Enumerator.new do |f|
     loop do
       f << x
-      x = block.call(x)
+      x = block.call x
     end
   end.lazy
 end
 
-set = iterate.call([0,0]) { |p| draw(p) }.first 599999
+set = iterate.call([0,0]) { |p| draw p }.first 599999
 
 SDL.Flip SCREEN
 SDL.SaveBMP(SCREEN, "out.bmp")
